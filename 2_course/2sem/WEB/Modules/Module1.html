@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Контрольна робота 1. Клевчук Марія</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            position: absolute;
+            top: 0;
+            left: 30%;
+            width: 40%;
+            height: 100vh;
+            flex-direction: column
+            margin: 0;
+            padding: 0;
+            background-color: #efc3e6;
+        }
+        .top {
+            position: absolute;
+            top: 0;
+            height: 5%;
+            width: 100%;
+            background-color: #231942;
+        }
+        .side {
+            position: absolute;
+            top: 5%;
+            left: 0;
+            width: 30%;
+            height: 95%;
+            margin: 0;
+            padding: 0;
+            background-color: #b8bedd;
+            opacity: 0.6;
+        }
+        .top-line{
+            position: absolute;
+            top: 5%;
+            left: 0;
+            width: 100%;
+            height: 15%;
+            background-color: #9f86c0;
+            opacity: 0.6;
+            clip-path: polygon(100% 38%, 0 82%, 0 0, 100% 0);
+        }
+        .bottom-line{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 15%;
+            background-color: #9f86c0;
+            opacity: 0.6;
+            clip-path: polygon(0 62%, 100% 18%, 100% 100%, 0 100%);
+        }
+        .img-top {
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            height: 15%;
+            width: 20%;
+            background-image: url("https://i0.wp.com/stuttgartdna.com/wp-content/uploads/2024/01/Bentley-Porsche-Origin-of-the-Species.jpg?resize=500%2C568");
+            background-size: cover;
+            box-shadow: 5px 5px 3px black;
+        }
+        .img-left1, .img-left2, .img-left3, .img-left4 {
+            position: absolute;
+            width: 25%;
+            height: 10%;
+            right: 70%;
+            background-size: cover;
+        }
+        .img-left1{
+            top: 30%;
+            background-image: url("https://i.infocar.ua/i/12/5980/1400x936.jpg");
+
+        }
+        .img-left2{
+            top: 45%;
+            background-image: url("https://pictures.porsche.com/rtt/iris?COSY-EU-100-1711coMvsi60AAt5FwcmBEgA4qP8iBUDxPE3Cb9pNXkBuNYdMGF4tl3U0%25z8rMHIspMBvMZq6G5OtgSv31nBJaA4qh4NSEGewirQ91wRmWBi2IdMZ4vFN2Dkt%25X%25ESnL8W6Pu5yIEVRoCwv39h7ftGXj4AUP4l6a0LDpUuBLTugaEwv%254x7Jv5mb3%25ZpjsLw");
+        }
+        .img-left3{
+            top: 60%;
+            background-image: url("https://i.infocar.ua/i/12/5842/1400x936.jpg");
+        }
+        .img-left4{
+            top: 75%;
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCHwIx-i97Lj-zYJ3t4eaSun7d-554EjUZlw&s");
+        }
+        .text-top{
+            position: absolute;
+            width: 60%;
+            height: 20%;
+            top: 10%;
+            right: 5%;
+        }
+        p {
+            margin: 0;
+            font-size: 10px;
+            font-family: "Times New Roman", Times, serif;
+            text-align: justify;
+        }
+        h1 {
+            font-size: 11px;
+            font-family: "Times New Roman", Times, serif;
+        }
+        .img-big {
+            position: absolute;
+            width: 60%;
+            height: 25%;
+            top: 20%;
+            right: 5%;
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKCs8A0HybrAhJ7Y9fvebkzIRrqeiI39NY9Q&s");
+            background-size: cover;
+        }
+        .text-column1, .text-column2 {
+            position: absolute;
+            width: 28%;
+            height: 30%;
+            top: 46%;
+        }
+        .text-column1 {
+            left: 35%;
+        }
+        .text-column2 {
+            right: 5%;
+        }
+        li {
+            padding: 0;
+            font-size: 10px;
+            margin: 5px;
+        }
+        ul {
+            list-style-type: "\1F539";
+            font-size: 10px;
+            font-family: "Times New Roman", Times, serif;
+            padding: 0;
+        }
+        .yellow-text {
+            background-color: yellow;
+            opacity: 0.9;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="top"></div>
+    <div class="side"> </div>
+    <div class="top-line"></div>
+    <div class="bottom-line"></div>
+    <div class="img-top"></div>
+    <div class="img-left1"></div>
+    <div class="img-left2"></div>
+    <div class="img-left3"></div>
+    <div class="img-left4"></div>
+    <div class="text-top">
+        <p> Porsche is a German luxury automobile manufacturer known for producing high-performance sports cars, SUVs, and sedans. Founded in 1931 by Ferdinand Porsche, the company initially focused on vehicle development and consulting before creating its first car, the Porsche 356, in 1948. Porsche is renowned for its commitment to engineering excellence, blending cutting-edge technology with timeless design.
+    </div>
+    <div class="img-big"></div>
+    <div class="text-column1">
+        <h1>Porsche History</h1>
+        <p>Founded in 1931 by Ferdinand Porsche, the company initially focused on engineering development. In 1948, it introduced its first car – the Porsche 356.</p>
+        <h1>The Iconic 911 Model</h1>
+        <p>Introduced in 1964, the Porsche 911 became a symbol of sports car excellence. It blends timeless design with modern technology, representing speed and precision.</p>
+        <h1>Innovation and Technology</h1>
+        <p>Porsche leads in automotive innovation, especially in electric vehicles. The Taycan showcases the brand’s commitment to combining sustainability with high performance.</p>
+        <h1>Motorsport Success</h1>
+        <p>With 19 victories at the "24 Hours of Le Mans," Porsche has a rich motorsport legacy. These wins highlight the brand’s engineering expertise and durability.</p>
+        <h1>Luxury and Comfort</h1>
+        <p>Beyond sports cars, Porsche produces luxury SUVs and sedans like the <span class="yellow-text">Cayenne and Panamera.</span> These models offer a perfect balance of power and comfort.</p>
+
+    </div>
+    <div class="text-column2">
+        <h1>The Future of Porsche</h1>
+        <p>Porsche continues to invest in electric vehicles and cutting-edge technologies. The brand’s vision is to maintain its performance heritage while advancing sustainability. Porsche continues to invest in electric vehicles and cutting-edge technologies. The brand’s vision is to maintain its performance heritage while advancing sustainability.</p>
+        <h1>Overall: </h1>
+        <ul>
+            <li>Porsche is a German luxury car brand.</li>
+            <li>It was founded in 1931 by Ferdinand Porsche.</li>
+            <li>The Porsche 911 was introduced in 1964.</li>
+            <li>The Cayenne is Porsche's first SUV.</li>
+            <li>Porsche is successful in motorsports.</li>
+            <li>The 918 Spyder is a hybrid supercar.</li>
+            <li>Porsche blends technology with style.</li>
+            <li>The brand focuses on innovation.</li>
+            <li>Porsche is known for quality craftsmanship.</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

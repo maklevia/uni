@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Семінар 4</title>
+    <style>
+        .block {
+            position: absolute;
+            width: 550px;
+            padding: 20px 10px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .block1 {
+            background-image: url("https://i.pinimg.com/736x/17/20/4b/17204b07f7da9e5c28654c8faf4916d7.jpg");
+            background-size: cover;
+            top: 10px;
+            left: 10px;
+        }
+        .block2 {
+            background-image: url("https://i.pinimg.com/736x/21/2b/28/212b2884da6afd817cf85523e5391b27.jpg");
+            background-size: cover;
+            top: 200px;
+            left: 450px;
+        }
+        .block3 {
+            background-image: url("https://i.pinimg.com/736x/46/6e/f1/466ef145fb8de5b468799da0adadb0bf.jpg");
+            background-size: cover;
+            top: 10px;
+            left: 860px;
+        }
+        img {
+            border: 4px solid white;
+            object-fit: cover;
+            overflow: hidden;
+            margin-bottom: 0;
+        }
+        figure{
+            text-align: center;
+            display: inline-block;
+            margin: 0;
+        }
+        figcaption {
+            margin-top: 0;
+            text-align: center;
+            color: white;
+            font-size: 12px;
+            font-family: Comic Sans MS, cursive, sans-serif;
+        }
+        .image-big {
+            width: 330px;
+            height: 250px;
+        }
+        .image-small {
+            width: 60px;
+            height: 60px;
+        }
+        .image-med {
+            width: 160px;
+            height: 80px;
+        }
+        .side-block {
+            position: absolute;
+            right: 10px;
+            display: inline-grid;
+            width: 180px;
+            gap: 5px;
+        }
+        .side-block1 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .side-block2 {
+            grid-template-columns: repeat(1, 1fr);
+        }
+        .window {
+            margin-top: 30px;
+            display: block;
+            width: 330px;
+            background-color: #fff7d4;
+            padding: 5px;
+        }
+        .window .menu {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 8px;
+            background: rgba(241, 177, 241, 0.62);
+
+        }
+        .window .menu1 {
+            display: flex;
+            justify-content: space-evenly;
+            padding: 8px;
+            background-color: rgba(241, 177, 241, 0.62);
+        }
+        .menu .item {
+            display: inline-block;
+            border-radius: 10px;
+            border: 1px solid rgb(255, 247, 212);
+            padding: 2px 5px;
+            text-align: center;
+            background: linear-gradient(90deg, rgba(200,147,186,1) 0%, rgba(255,189,230,1) 51%, rgba(213,138,187,1) 100%);
+            color: #b83f79;
+            font-size: 13px;
+            font-weight: bold;
+            font-family: Comic Sans MS, cursive, sans-serif;
+        }
+        .menu1 .item {
+            display: inline-block;
+            border-radius: 10px;
+            border: 1px solid rgb(255, 247, 212);
+            padding: 2px 5px;
+            text-align: center;
+            background-color: #b83f79;
+            color: #fff7d4;
+            font-size: 13px;
+            font-weight: bold;
+            font-family: Comic Sans MS, cursive, sans-serif;
+        }
+        .menu1 .item-active {
+            background-color: hotpink;
+            }
+        .block1 .item:hover {
+            color: #50173e;
+        }
+        .block3 .item:hover {
+            color: #50173e;
+        }
+        .block2 .item:hover {
+            background: rgb(144,85,128);
+            background: linear-gradient(90deg, rgba(144,85,128,1) 0%, rgba(240,132,199,1) 51%, rgba(144,85,128,1) 100%);
+        }
+        .information {
+            margin: 10px;
+            font-size: 12px;
+            color: #c64da9;
+
+        }
+        .image-inside {
+            margin-right: 6px;
+            margin-bottom: 1px;
+            border: 3px solid rgba(234, 185, 185);
+            float: left;
+            width: 150px;
+            height: 120px;
+        }
+        a {
+            font-size: 16px;
+            color: #3e1331;
+        }
+    </style>
+</head>
+<body>
+<div class="block block1">
+    <figure>
+        <img class="image-big" src="https://i.pinimg.com/736x/49/a8/a3/49a8a3165f1b7669770dba6eeb6a2274.jpg" alt="Flowers">
+        <figcaption class="image-text">Flowers bring people happiness</figcaption>
+    </figure>
+    <div class="window">
+        <div class="menu">
+            <div class="item item-active">About Flowers</div>
+            <div class="item">Information</div>
+            <div class="item">Opportunities</div>
+        </div>
+        <div class="information">
+            <img class="image-inside" src="https://i.pinimg.com/736x/35/2b/2a/352b2a70f517dc30dc3e3e6f2855bd6c.jpg" alt="Flowers">
+            Flowers are nature's vibrant gift, bringing color and fragrance to the world. They symbolize beauty, love, and growth, and each variety holds unique significance. From the delicate petals of a rose to the bold colors of a sunflower, flowers brighten our lives with their presence and elegance. Their blooms serve as a reminder of life's fleeting moments, encouraging us to appreciate the beauty in the simplest things.
+            <br><br>
+            <a href="#">Visit Website</a>
+        </div>
+    </div>
+    <div class="side-block side-block1">
+        <figure>
+            <img class="image-small" src="https://i.pinimg.com/736x/0d/25/c7/0d25c72eb1a4ec1a1dd17ba61a76a919.jpg" alt="Flowers">
+            <figcaption class="image-text">Roses</figcaption>
+        </figure>
+        <figure>
+            <img class="image-small" src="https://i.pinimg.com/736x/8e/15/34/8e1534b25d2a9612941ad2df1d6d703f.jpg" alt="Flowers">
+            <figcaption class="image-text">Tulips</figcaption>
+        </figure>
+        <figure>
+            <img class="image-small" src="https://i.pinimg.com/736x/61/89/07/61890775fe3799168077bf3bf8898fb2.jpg" alt="Flowers">
+            <figcaption class="image-text">Lilies</figcaption>
+        </figure>
+        <figure>
+            <img class="image-small" src="https://i.pinimg.com/736x/60/a6/df/60a6dfe819b738ebc88282c1512e8d12.jpg" alt="Flowers">
+            <figcaption class="image-text ">Hydrangea</figcaption>
+        </figure>
+        <figure>
+            <img class="image-small" src="https://i.pinimg.com/736x/33/87/f3/3387f35be94e6e917437b8fa1affaaf0.jpg" alt="Flowers">
+            <figcaption class="image-text ">Carnation</figcaption>
+        </figure>
+        <figure>
+            <img class="image-small" src="https://i.pinimg.com/736x/80/7f/e7/807fe7a4e2bce1f7266bb62f79883c26.jpg" alt="Flowers">
+            <figcaption class="image-text ">Ranunculus</figcaption>
+        </figure>
+        <figure>
+            <img class="image-small" src="https://i.pinimg.com/736x/c7/45/a6/c745a66a545e651d7086d81d2b05076d.jpg" alt="Flowers">
+            <figcaption class="image-text ">Lotus</figcaption>
+        </figure>
+        <figure>
+            <img class="image-small" src="https://i.pinimg.com/736x/f4/d0/b0/f4d0b03970cd808335c69d6fbef48951.jpg" alt="Flowers">
+            <figcaption class="image-text ">Hollyhock</figcaption>
+        </figure>
+        <figure>
+            <img class="image-small" src="https://i.pinimg.com/736x/12/63/13/126313a43effa94897a344ebc0c39f3e.jpg" alt="Flowers">
+            <figcaption class="image-text ">Sweet pea</figcaption>
+        </figure>
+        <figure>
+            <img class="image-small" src="https://i.pinimg.com/736x/19/f1/d8/19f1d87705dba6bfb734b162c24b4020.jpg" alt="Flowers">
+            <figcaption class="image-text ">Orchid</figcaption>
+        </figure>
+    </div>
+</div>
+
+<div class="block block3">
+    <figure>
+        <img class="image-big" src="https://i.pinimg.com/736x/0e/5d/31/0e5d315fe38f546aa5bc4045f884f061.jpg" alt="Flowers">
+        <figcaption class="image-text"> . </figcaption>
+    </figure>
+    <div class="window">
+        <div class="menu">
+            <div class="item item-active">About Flowers</div>
+            <div class="item">Information</div>
+            <div class="item">Opportunities</div>
+        </div>
+        <div class="information">
+            <img class="image-inside" src="https://i.pinimg.com/736x/35/2b/2a/352b2a70f517dc30dc3e3e6f2855bd6c.jpg" alt="Flowers">
+            Flowers are nature's vibrant gift, bringing color and fragrance to the world. They symbolize beauty, love, and growth, and each variety holds unique significance. From the delicate petals of a rose to the bold colors of a sunflower, flowers brighten our lives with their presence and elegance. Their blooms serve as a reminder of life's fleeting moments, encouraging us to appreciate the beauty in the simplest things.
+            <br><br>
+            <a href="#">Visit Website</a>
+        </div>
+    </div>
+    <div class="side-block side-block2">
+        <figure>
+            <img class="image-med" src="https://i.pinimg.com/736x/0d/25/c7/0d25c72eb1a4ec1a1dd17ba61a76a919.jpg" alt="Flowers">
+            <figcaption class="image-text">Roses are timeless symbols of love</figcaption>
+        </figure>
+        <figure>
+            <img class="image-med" src="https://i.pinimg.com/736x/49/a8/a3/49a8a3165f1b7669770dba6eeb6a2274.jpg" alt="Flowers">
+            <figcaption class="image-text">Peonies are timeless symbols of beauty</figcaption>
+        </figure>
+        <figure>
+            <img class="image-med" src="https://i.pinimg.com/736x/0e/5d/31/0e5d315fe38f546aa5bc4045f884f061.jpg" alt="Flowers">
+            <figcaption class="image-text">Tulips are timeless symbols of spring</figcaption>
+        </figure>
+        <figure>
+            <img class="image-med" src="https://i.pinimg.com/736x/35/2b/2a/352b2a70f517dc30dc3e3e6f2855bd6c.jpg" alt="Flowers">
+            <figcaption class="image-text">Tulips are timeless symbols of spring</figcaption>
+        </figure>
+    </div>
+</div>
+
+<div class="block block2">
+    <figure>
+        <img class="image-big" src="https://i.pinimg.com/736x/0d/25/c7/0d25c72eb1a4ec1a1dd17ba61a76a919.jpg" alt="Flowers">
+        <figcaption class="image-text"> . </figcaption>
+    </figure>
+    <div class="window">
+        <div class="menu1">
+            <div class="item item-active">About Flowers</div>
+            <div class="item">Information</div>
+            <div class="item">Opportunities</div>
+        </div>
+        <div class="information">
+            <img class="image-inside" src="https://i.pinimg.com/736x/35/2b/2a/352b2a70f517dc30dc3e3e6f2855bd6c.jpg" alt="Flowers">
+            Flowers are nature's vibrant gift, bringing color and fragrance to the world. They symbolize beauty, love, and growth, and each variety holds unique significance. From the delicate petals of a rose to the bold colors of a sunflower, flowers brighten our lives with their presence and elegance. Their blooms serve as a reminder of life's fleeting moments, encouraging us to appreciate the beauty in the simplest things.
+            <br><br>
+            <a href="#">Visit Website</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактор тексту</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 50px;
+            font-size: 15px;
+        }
+        #editor {
+            width: 80%;
+            height: 200px;
+            border: 1px solid gray;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        button, input {
+            background-color: #ffffff;
+            border: 1px solid gray;
+            border-radius: 5px;
+            width: 150px;
+            height: 30px;
+        }
+
+    </style>
+</head>
+<body>
+
+
+<div class="toolbar">
+    <button onclick="formatText('bold')">Жирний</button>
+    <button onclick="formatText('italic')">Курсив</button>
+    <button onclick="formatText('underline')">Підкреслення</button>
+    <input type="color" id="colorPicker" onchange="changeColor(this.value)">
+    <button onclick="toggleCase()">Регістр</button>
+</div>
+
+<div id="editor" contenteditable="true">
+    Введіть текст тут
+</div>
+
+<script>
+    function formatText(command) {
+        document.execCommand(command);
+    }
+
+    function changeColor(color) {
+        document.execCommand("foreColor", false, color);
+    }
+
+    function toggleCase() {
+        const sel = window.getSelection();
+        if (!sel.rangeCount) return;
+        const range = sel.getRangeAt(0);
+        const selectedText = sel.toString();
+        if (!selectedText) return;
+        const isUpper = selectedText === selectedText.toUpperCase();
+        const newText = isUpper ? selectedText.toLowerCase() : selectedText.toUpperCase();
+        const span = document.createElement("span");
+        span.textContent = newText;
+        range.deleteContents();
+        range.insertNode(span);
+        sel.removeAllRanges();
+        const newRange = document.createRange();
+        newRange.selectNodeContents(span);
+        sel.addRange(newRange);
+    }
+</script>
+
+</body>
+</html>

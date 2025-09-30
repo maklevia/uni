@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Семінар 8</title>
+    <style>
+        body {
+            background-color: #948979;
+        }
+        form {
+            background-color: #DFD0B8;
+            display: flex;
+            flex-direction: column;
+            width: 800px;
+            margin: 150px auto 150px auto;
+            border-radius: 15px;
+            box-shadow: 5px 5px 10px rgba(7, 7, 7, 0.8);
+            padding: 25px;
+            color: #222831;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        label {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        select {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        h3 {
+            margin-top: 25px;
+            font-size: 24px;
+        }
+        #info img.country-flag {
+            display: block;
+            margin: 0 auto 20px auto;
+            max-height: 200px;
+        }
+
+        .landmark-img {
+            width: 300px;
+
+            margin: 0 15px 15px 0;
+        }
+
+
+    </style>
+</head>
+<body>
+<form>
+    <h1>Your trip plan</h1> <hr>
+    <div>
+        <label for="country-selection">Choose the country: </label>
+        <select id="country-selection">
+            <option value="">-- --</option>
+            <option value="france">France</option>
+            <option value="italy">Italy</option>
+            <option value="spain">Spain</option>
+            <option value="croatia">Croatia</option>
+            <option value="greece">Greece</option>
+        </select>
+    </div>
+    <div id="info"></div> <hr>
+    <h3>Total cost: €<span id="cost">0</span></h3>
+</form>
+<script>
+    const data = {
+        france: {
+            flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/1200px-Flag_of_France.svg.png",
+            landmarks: [
+                {name: "Eiffel Tower",
+                    img: "https://media.assettype.com/outlooktraveller%2F2024-04%2Fe4acb9aa-f0cf-448b-9892-4414cac4318e%2Feffeil.jpg",
+                    description: "The Eiffel Tower, built for the 1889 World’s Fair, stands 330 meters tall and is one of the most recognized structures in the world. Visitors can access multiple viewing platforms with sweeping views over Paris. At night, it sparkles every hour with thousands of lights. The surrounding Champ de Mars park is also a popular spot for photos and picnics.",
+                    price: 30},
+                {name: "Louvre Museum",
+                    img: "https://www.relaisdulouvre.com/wp-content/uploads/2024/03/Louvre1-1024x682.jpg",
+                    description: "The Louvre is the largest art museum globally and was originally a royal palace before becoming a museum in 1793. Its glass pyramid entrance is an architectural icon. Inside, you’ll find over 35,000 artworks, including the Mona Lisa and the Venus de Milo. The museum spans diverse collections from ancient civilizations to 19th-century art.",
+                    price: 17},
+                {name: "Palace of Versailles",
+                    img: "https://worldinparis.com/wp-content/uploads/2019/08/Versailles-Palace-1024x683.jpg",
+                    description: "Once the royal residence of Louis XIV, the Palace of Versailles is known for its grand Hall of Mirrors, ornate rooms, and vast gardens with fountains and sculptures. The estate also includes the Trianon palaces and Marie Antoinette’s estate. It represents the height of French classical architecture and royal luxury. Exploring the gardens alone can take several hours.",
+                    price: 21}
+            ]
+        },
+        italy: {
+            flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/Flag_of_Italy.svg/1500px-Flag_of_Italy.svg.png",
+            landmarks: [
+                {name: "Colosseum",
+                    img: "https://cdn.mos.cms.futurecdn.net/BiNbcY5fXy9Lra47jqHKGK.jpg",
+                    description: " The Colosseum in Rome is an ancient amphitheater built around 70–80 AD, once hosting gladiator battles and public spectacles. It could hold up to 50,000 spectators and remains a symbol of Roman engineering. You can explore the arena floor, underground chambers, and upper levels. It is part of the larger Roman Forum and Palatine Hill archaeological area.",
+                    price: 18},
+                {name: "Leaning Tower of Pisa",
+                    img: "https://images.ctfassets.net/cnu0m8re1exe/1tI0J6fFR4TQAU7YApSjcE/3aedcf058c5f2cd9212b86731541ac3d/shutterstock_745306897.jpg",
+                    description: "This iconic bell tower, built in the 12th century, is famous for its unintended tilt caused by soft ground. It stands about 56 meters tall and leans about 4 degrees. Visitors can climb nearly 300 steps to the top for a view of Pisa. It is part of the Piazza dei Miracoli, which includes a cathedral and baptistery",
+                    price: 20},
+                {name: "Uffizi Gallery",
+                    img: "https://sothebys-com.brightspotcdn.com/dims4/default/e68f61f/2147483647/strip/true/crop/2017x1210+0+259/resize/800x480!/quality/90/?url=http%3A%2F%2Fsothebys-brightspot.s3.amazonaws.com%2Fdotcom%2F66%2F52%2Ff90a518e490b9cc340d10232ba8d%2F2-48473926487-b1767081d8-k.jpg",
+                    description: "Located in Florence, the Uffizi is one of the world’s most famous art museums, especially known for Renaissance masterpieces. Works by Botticelli, Michelangelo, Leonardo da Vinci, and Caravaggio are displayed here. The building itself is a historic architectural gem from the 16th century. Many rooms overlook the Arno River and Ponte Vecchio.",
+                    price: 20}
+            ]
+        },
+        spain: {
+            flag: "data:image/png;base64,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",
+            landmarks: [
+                {name: "Sagrada Família",
+                    img: "https://cdn.britannica.com/15/194815-050-08B5E7D1/Nativity-facade-Sagrada-Familia-cathedral-Barcelona-Spain.jpg",
+                    description: "Located in Barcelona, this massive basilica was designed by architect Antoni Gaudí and has been under construction since 1882. Its intricate facades and towering spires make it one of Spain’s most unique landmarks. The interior features stunning stained glass and organic architectural forms. Visitors can also ascend the towers for panoramic city views.",
+                    price: 26},
+                {name: "Alhambra",
+                    img: "https://cdn.getyourguide.com/img/tour/ab969eb7e59381c8.jpeg/98.jpg",
+                    description: "The Alhambra in Granada is a sprawling hilltop fortress complex with palaces, gardens, and fortifications built by Moorish rulers in the 13th and 14th centuries. It’s renowned for its detailed Islamic art, tilework, and the beautiful Generalife gardens. Key highlights include the Nasrid Palaces and the Court of the Lions. The site offers views over the city and Sierra Nevada mountains.",
+                    price: 19},
+                {name: "Prado Museum",
+                    img: "https://spainvoyages.com/wp-content/uploads/2024/03/Golovna-e1709978621203.webp",
+                    description: "Located in Madrid, the Prado is Spain’s most famous art museum, housing masterpieces from European artists like Velázquez, Goya, and Rubens. Its collection focuses heavily on Spanish, Italian, and Flemish art from the 12th to early 20th centuries. Highlights include Las Meninas and The Third of May 1808. The building itself is neoclassical and elegant.",
+                    price: 15},
+            ]
+        },
+        croatia: {
+            flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_Croatia.svg/960px-Flag_of_Croatia.svg.png",
+            landmarks: [
+                {name: "Dubrovnik City Walls",
+                    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzUKdGJCAJpLjMthu4Dg8Nx6gD__X8_IZAuQ&s",
+                    description: "These massive stone walls encircle the Old Town of Dubrovnik, dating back to the 13th–16th centuries. Walking the walls offers stunning views of the Adriatic Sea and the city’s red-roofed buildings. The route is about 2 km long with several towers and forts along the way. The site gained extra fame as a filming location for Game of Thrones.",
+                    price: 35},
+                {name: "Diocletian’s Palace",
+                    img: "https://visitsplit.croatia.hr/cmsmedia/TZ_Peristil_print1%20-%20bez%20ljudiA.jpg",
+                    description: "Located in Split, this ancient Roman palace was built by Emperor Diocletian around 305 AD as his retirement residence. It blends Roman ruins with medieval and modern buildings, as people still live and work inside the complex. Key sights include the Peristyle square, the Cathedral of St. Domnius, and underground cellars. The palace forms the heart of Split’s Old Town.",
+                    price: 8},
+                {name: "Plitvice Lakes National Park",
+                    img: "https://cdn.audleytravel.com/3603/2573/79/15975667-plitvie-lakes-national-park-croatia.jpg",
+                    description: "This UNESCO-listed park features cascading waterfalls, 16 interconnected lakes, and lush forests. Wooden boardwalks allow visitors to explore the turquoise waters and varied wildlife easily. The park is especially beautiful in spring and autumn with vibrant colors. Boat rides and shuttle buses connect different areas.",
+                    price: 25}
+            ]
+        },
+        greece: {
+            flag: "https://cdn.britannica.com/49/1049-004-AE4BAD3E/Flag-Greece.jpg",
+            landmarks: [
+                {name: "Acropolis of Athens",
+                    img: "https://cdn-imgix.headout.com/microbrands-banner-image/image/b698f96a3bf7e35418940973f33c4708-The%20Acropolis%20of%20Athens.jpeg?auto=format&q=90&crop=faces&fit=crop",
+                    description: "The Acropolis is an ancient citadel on a rocky hill overlooking Athens, dating back to the 5th century BC. It houses iconic structures like the Parthenon, the Erechtheion, and the Temple of Athena Nike. The site offers sweeping views over the modern city. It represents the height of classical Greek architecture and history. ",
+                    price: 25},
+                {name: "Meteora",
+                    img: "https://media.odynovotours.com/article/75000/meteora-byzantine-monasteries-1_74155.jpg",
+                    description: "Meteora is a complex of monasteries perched on towering sandstone rock pillars in central Greece. Originally built in the 14th century, six monasteries are still active and open to visitors. The site is known for dramatic views, hiking trails, and its spiritual atmosphere. It’s also a UNESCO World Heritage site.",
+                    price: 5},
+                {name: "Knossos Palace",
+                    img: "https://greeking.me/images/blog/images/Hero-images/Crete/knossos-palace.jpg",
+                    description: "Located near Heraklion, Crete, Knossos is the largest Bronze Age archaeological site on the island and is linked to the legend of the Minotaur. The palace complex dates back to around 1900–1400 BC and features colorful frescoes and reconstructed ruins. It offers a glimpse into Minoan civilization, one of Europe’s oldest cultures.",
+                    price: 15}
+            ]
+        }
+    }
+
+    const countrySelect = document.getElementById('country-selection');
+    const infoDiv = document.getElementById('info');
+    const costSpan = document.getElementById('cost');
+
+    countrySelect.addEventListener('change', function() {
+        const selectedCountry = countrySelect.value;
+        infoDiv.innerHTML = '';
+        costSpan.textContent = '0';
+
+        if (selectedCountry && data[selectedCountry]) {
+            const countryData = data[selectedCountry];
+
+            const flagImg = document.createElement('img');
+            flagImg.className = 'country-flag';
+            flagImg.src = countryData.flag;
+            flagImg.alt = 'Flag';
+            infoDiv.appendChild(flagImg);
+
+            let totalCost = 0;
+            const selectedLandmarks = new Set();
+
+            countryData.landmarks.forEach((landmark, index) => {
+                const landmarkDiv = document.createElement('div');
+                landmarkDiv.style.marginTop = '20px';
+                landmarkDiv.style.borderTop = '1px solid #222831';
+                landmarkDiv.style.paddingTop = '15px';
+
+                const title = document.createElement('h4');
+                title.textContent = landmark.name;
+
+                const landmarkImg = document.createElement('img');
+                landmarkImg.className = 'landmark-img';
+                landmarkImg.src = landmark.img;
+                landmarkImg.alt = landmark.name;
+
+                const desc = document.createElement('p');
+                desc.textContent = landmark.description;
+
+                const price = document.createElement('h6');
+                price.innerHTML = `<strong>Ticket price:</strong> €${landmark.price}`
+
+                const checkboxLabel = document.createElement('label');
+                checkboxLabel.style.display = 'block';
+                checkboxLabel.style.marginTop = '10px';
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.id = `landmark-${index}`;
+
+                checkbox.addEventListener('change', function() {
+                    if (checkbox.checked) {
+                        selectedLandmarks.add(index);
+                        totalCost += landmark.price;
+                    } else {
+                        selectedLandmarks.delete(index);
+                        totalCost -= landmark.price;
+                    }
+                    costSpan.textContent = totalCost;
+                });
+
+                checkboxLabel.appendChild(checkbox);
+                checkboxLabel.append(` Visit ${landmark.name}`);
+
+                landmarkDiv.appendChild(title);
+                landmarkDiv.appendChild(landmarkImg);
+                landmarkDiv.appendChild(desc);
+                landmarkDiv.appendChild(price);
+                landmarkDiv.appendChild(checkboxLabel);
+
+                infoDiv.appendChild(landmarkDiv);
+            });
+        }
+    });
+</script>
+
+
+</body>
+</html>

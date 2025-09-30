@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Спливаюча підказка</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+        .text-container {
+            width: 80%;
+            border: 1px solid gray;
+            padding: 10px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+        }
+        button {
+            font-size: 20px;
+            background-color: lightgrey;
+        }
+        .tooltip {
+            position: relative;
+            background-color: yellow;
+        }
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 120%;
+            left: 0;
+            background: rgba(7, 7, 7, 0.8);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 100;
+        }
+        .tooltip:hover::after {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<p>Заготовлена підказка знаходиться на виділеному тексті. Нова підказка додається виділенням тексту, та натисканням на кнопку</p>
+<div class="text-container" id="container">
+    <p>Porsche — це символ німецької інженерної досконалості, який поєднує в собі потужність, елегантність і спортивний дух. Заснована в 1931 році <span class="tooltip" data-tooltip="засновник Porsche, народився 1875р." style="background-color: yellow">Фердинандом Порше</span>, компанія спочатку займалася конструкторськими послугами, але згодом прославилася як виробник автомобілів, які задають стандарти в автоспорті й на дорогах загального користування. Першою легендарною моделлю став Porsche 356, а справжній прорив принесла модель 911 — один із найвпізнаваніших спорткарів у світі.</p>
+    <p>Автомобілі Porsche відомі своєю відмінною керованістю, точною підвіскою та характерним звуком двигуна. Компанія завжди робила акцент на балансі між високою продуктивністю та комфортом. Porsche успішно поєднує класичні традиції з сучасними технологіями, впроваджуючи інновації, зокрема в області гібридних і електричних силових установок. Прикладом цього є Taycan — перший повністю електричний спорткар марки.</p>
+    <p>Окрім виробництва авто, Porsche бере активну участь в автоспорті, зокрема в гонках на витривалість, таких як 24 години Ле-Ману, де компанія неодноразово перемагала. Її успіхи на треку стали основою для репутації бренду як надійного і динамічного виробника. У світі Porsche — це не просто марка, це стиль життя, вибір тих, хто цінує швидкість, якість і винятковий дизайн.</p>
+</div>
+<button onclick="addTooltip()">Додати підказку</button>
+
+<script>
+    function addTooltip() {
+        const selection = window.getSelection();
+        const selectedText = selection.toString().trim();
+        if (!selectedText) {
+            alert("Виділіть текст для додавання підказки!");
+            return;
+        }
+
+        const tooltipText = prompt("Введіть текст підказки!");
+        if (!tooltipText) return;
+
+        const range = selection.getRangeAt(0);
+        const span = document.createElement("span");
+        span.className = "tooltip";
+        span.setAttribute("data-tooltip", tooltipText);
+        span.textContent = selectedText;
+
+        range.deleteContents();
+        range.insertNode(span);
+        selection.removeAllRanges();
+    }
+</script>
+</body>
+</html>

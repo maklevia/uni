@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Лекція 15</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .info {
+            font-size: 20px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #CCAFA5;
+        }
+        #diffMessage {
+            margin-top: 10px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="info">
+    <p id="date"></p>
+</div>
+
+<div class="info">
+    <p id="time"></p>
+</div>
+
+<div class="info" id="result">
+    <p>Enter a date to calculate the difference</p>
+    <input type="date" id="userDate">
+    <button onclick="calculateDifference()">Calculate</button>
+    <p id="diffMessage"></p>
+</div>
+
+<script>
+    const date = new Date();
+    const hours = date.getHours();
+    let partOfDay = '';
+    if (hours >= 5 && hours < 12) {
+        partOfDay = 'Morning';
+    } else if (hours >= 12 && hours < 17) {
+        partOfDay = 'Noon';
+    } else if (hours >= 17 && hours < 21) {
+        partOfDay = 'Evening';
+    } else {
+        partOfDay = 'Night';
+    }
+    const string = "Current Time: " + date.toLocaleTimeString() + "<br>" +
+        "Current Date: " + date.toLocaleDateString() + "<br>" +
+        "Part Of Day: " + partOfDay;
+    document.getElementById("date").innerHTML = string;
+
+
+    const timerEl = document.getElementById("time");
+    const startTime = Date.now();
+    setInterval(() => {
+        const now = Date.now();
+        const seconds = Math.floor((now - startTime) / 1000);
+        timerEl.textContent = `You have been on this page for ${seconds} seconds.`;
+    }, 1000);
+
+
+    function calculateDifference() {
+        const input = document.getElementById("userDate").value;
+        const messageEl = document.getElementById("diffMessage");
+        const selectedDate = new Date(input);
+        const currentDate = new Date();
+        const diffMs = selectedDate - currentDate;
+        const diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
+        let message = '';
+        if (diffDays > 0) {
+            message = `The selected date is ${diffDays} day(s) in the future.`;
+        } else if (diffDays < 0) {
+            message = `The selected date was ${Math.abs(diffDays)} day(s) ago.`;
+        } else {
+            message = "The selected date is today.";
+        }
+        messageEl.innerHTML = message;
+    }
+</script>
+
+</body>
+</html>

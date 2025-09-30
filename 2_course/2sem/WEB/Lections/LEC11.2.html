@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Лекція 11</title>
+  <style>
+    .pagination .page-link:hover {
+      background-color: #0d6efd !important;
+      color: white !important;
+    }
+  </style>
+</head>
+<body>
+<div class="container pt-3">
+  <form class="form-inline">
+    <div class="row g-3">
+      <div class="col-md-6 col-12">
+        <div class="input-group">
+          <label class="col-form-label me-2">Filter</label>
+          <input type="text" class="form-control" placeholder="Type to Search">
+          <button class="btn btn-outline-secondary" type="button">Clear</button>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-12">
+        <div class="input-group">
+          <label class="col-form-label me-2">Sort</label>
+          <select class="form-control form-select">
+            <option selected>-- none --</option>
+          </select>
+          <select class="form-select" disabled>
+            <option selected>Asc</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-3 mt-2">
+      <div class="col-md-6 col-12">
+        <div class="input-group">
+          <label class="col-form-label me-2">Sort direction</label>
+          <select class="form-select">
+            <option selected>Asc</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6 col-12">
+        <div class="input-group">
+          <label class="col-form-label me-2">Per page</label>
+          <select class="form-select">
+            <option selected>5</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <table class="table mt-3">
+    <thead>
+    <tr>
+      <th>Person Full name</th>
+      <th>Person age</th>
+      <th>is Active</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Dickerson Macdonald</td>
+      <td>40</td>
+      <td>Yes :)</td>
+      <td>
+        <div class="d-flex gap-2">
+          <button class="btn btn-secondary w-100">Info modal</button>
+          <button class="btn btn-secondary w-100">Show Details</button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Larsen Shaw</td>
+      <td>21</td>
+      <td>No :(</td>
+      <td>
+        <div class="d-flex gap-2">
+          <button class="btn btn-secondary w-100">Info modal</button>
+          <button class="btn btn-secondary w-100">Show Details</button>
+        </div>
+      </td>
+    </tr>
+    <tr class="table-success">
+      <td>Mini Nawarro</td>
+      <td>9</td>
+      <td>No :(</td>
+      <td>
+        <div class="d-flex gap-2">
+          <button class="btn btn-secondary w-100">Info modal</button>
+          <button class="btn btn-secondary w-100">Show Details</button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Geneva Wilson</td>
+      <td>89</td>
+      <td>No :(</td>
+      <td>
+        <div class="d-flex gap-2">
+          <button class="btn btn-secondary w-100">Info modal</button>
+          <button class="btn btn-secondary w-100">Show Details</button>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Jami Carney</td>
+      <td>38</td>
+      <td>Yes :)</td>
+      <td>
+        <div class="d-flex gap-2">
+          <button class="btn btn-secondary w-100">Info modal</button>
+          <button class="btn btn-secondary w-100">Show Details</button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+    <li class="page-item"><a class="page-link" href="#">&lsaquo;</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">&rsaquo;</a></li>
+    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Семінар 9-10</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    table {
+      border: 1px solid black;
+      background-color: #F3D0D7;
+      width: 700px;
+    }
+    td {
+      border: 1px solid black;
+      padding: 10px;
+    }
+    .report {
+      width: 700px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+<form>
+  <table>
+    <tr><td style="text-align: center">Замовлення на придбання товару</td></tr>
+    <tr><td>
+      <label for="name">Назва товару</label> <br>
+      <select id="name">
+        <option value="0">"Тією горою є ви" (Бріанна Вест) - 240 грн</option>
+        <option value="1">"Покинь, якщо кохаєш" (Коллін Гувер) - 350 грн</option>
+        <option value="2">"Триста поезій" (Ліна Костенко) - 400 грн</option>
+        <option value="3">"І зійде крига" (Ханна Грейс) - 600 грн</option>
+        <option value="4">"1984" (Джордж Орвелл) - 180 грн</option>
+        <option value="5">"Чоловік на ім'я Уве" (Фредрік Бакман) - 530 грн</option>
+        <option value="6">"Коротка історія мистецтва" (С'юзі Годж) - 600 грн</option>
+        <option value="7">"Голодні ігри. Книга 1" (Сюзанна Коллінз) - 250 грн</option>
+        <option value="8">"У тебе є ти!" (Олеся Лужецька) - 270 грн</option>
+        <option value="9">"Століття Якова" (Володимир Лис) - 285 грн</option>
+      </select>
+    </td></tr>
+    <tr><td>
+      <label for="value">Кількість: </label>
+      <input id="value" type="number" min="1" max="100" style="width: 100px; margin-right: 10px;" required>
+      <label for="amount">Вартість: </label>
+      <input id="amount" type="text" style="width: 100px; margin-right: 10px;" readonly>
+    </td></tr>
+    <tr><td>
+      <label>Спосіб доставки замовлення</label> <br>
+      <label><input type="radio" name="delivery" value="post" checked> Поштою (+5%) </label><br>
+      <label><input type="radio" name="delivery" value="courier"> Доставка до дому (+15%)</label><br>
+      <label><input type="checkbox" id="giftWrap"> У святковій упаковці (+10%)</label><br>
+      <div id="addressField" style="display:none;">
+        <label for="address">Адреса доставки: </label>
+        <input id="address" type="text" style="width: 300px; margin-right: 10px;">
+      </div>
+    </td></tr>
+    <tr><td>
+      <label for="promocode">Промокод: </label>
+      <input type="text" id="promocode" style="width: 100px; margin-right: 10px;">
+      <button type="button" onclick="applyPromocode()">Застосувати промокод</button>
+    </td></tr>
+    <tr><td style="display: flex; justify-content: end; align-items: center;">
+      <label for="total">Загальна вартість замовлення: </label>
+      <input id="total" type="text" style="width: 100px; margin-right: 5px;" readonly>
+      <button type="button" onclick="totalAmount()">Підрахувати</button>
+    </td></tr>
+    <tr><td>
+      <label>Дані замовника</label> <br>
+      <label for="name1">Ім'я: </label>
+      <input id="name1" type="text" required>
+      <label for="name2">Прізвище: </label>
+      <input id="name2" type="text" required>
+      <label for="phone">Телефон: </label>
+      <input id="phone" type="text" placeholder="+38 (044) 123 45 67" required>
+    </td></tr>
+    <tr><td style="display: flex; justify-content: end; align-items: center;">
+      <button type="reset" style="margin-right: 5px;">Відновити початкові значення полів</button>
+      <button type="button" onclick="submitForm()">Відіслати дані</button>
+    </td></tr>
+  </table>
+</form>
+<div id="reports">
+  <h3  id='h3' style="display: none">Відомість замовлення</h3>
+</div>
+
+<script>
+  const books = [
+    {name: "Тією горою є ви", author: "Бріанна Вест", price: 240},
+    {name: "Покинь, якщо кохаєш", author: "Коллін Гувер", price: 350 },
+    {name: "Триста поезій", author: "Ліна Костенко", price: 400},
+    {name: "І зійде крига", author: "Ханна Грейс", price: 600},
+    {name: "1984", author: "Джордж Орвелл", price: 180},
+    {name: "Чоловік на ім'я Уве", author: "Фредрік Бакман", price: 530},
+    {name: "Коротка історія мистецтва", author: "С'юзі Годж", price: 600},
+    {name: "Голодні ігри. Книга 1", author: "Сюзанна Коллінз", price: 250},
+    {name: "У тебе є ти!", author: "Олеся Лужецька", price: 270},
+    {name: "Століття Якова", author: "Володимир Лис", price: 285},
+  ];
+
+  const promocodes = {
+    "FIRSTORDER": 0.15,
+    "EXTRA10": 0.10,
+    "MEGASALE": 0.20,
+    "QWERT": 0.05,
+  };
+
+
+  const bookChoice = document.getElementById("name");
+  const valueChoice = document.getElementById("value");
+  const booksAmount = document.getElementById("amount");
+  const promocodeInput = document.getElementById("promocode");
+  let discount = 0;
+
+  function updateAmount() {
+    const selectedBook = books[bookChoice.value];
+    const quantity = Number(valueChoice.value);
+    let total = 0;
+    if (quantity >= 1 && selectedBook) {
+      total = selectedBook.price * quantity;
+      if (discount > 0) {
+        total -= total * discount;
+      }
+      booksAmount.value = total.toFixed(2) + " грн";
+    } else {
+      booksAmount.value = "";
+    }
+    return total;
+  }
+
+  bookChoice.addEventListener("change", updateAmount);
+  valueChoice.addEventListener("input", updateAmount);
+
+  function applyPromocode() {
+    const code = promocodeInput.value
+    if (promocodes.hasOwnProperty(code)) {
+      discount = promocodes[code];
+      updateAmount();
+      alert("Промокод успішно застосовано!");
+    } else {
+      alert("Неправильний промокод.");
+    }
+  }
+
+  const deliveryOptions = document.getElementsByName("delivery");
+  deliveryOptions.forEach(option => {
+    option.addEventListener("change", () => {
+      const addressField = document.getElementById("addressField");
+      const selected = [...deliveryOptions].find(r => r.checked);
+      if (selected && selected.value === "courier") {
+        addressField.style.display = 'block';
+      } else {
+        addressField.style.display = 'none';
+      }
+    });
+  });
+
+  function totalAmount() {
+    let total = updateAmount();
+    if (total === 0) return;
+    const selected = [...deliveryOptions].find(r => r.checked);
+    if (document.getElementById("giftWrap").checked) {
+      if (selected && selected.value === "courier") {
+        total *= 1.25;
+      } else {
+        total *= 1.15;
+      }
+    }
+    else {
+      if (selected && selected.value === "courier") {
+        total *= 1.15;
+      } else {
+        total *= 1.05;
+      }
+    }
+    document.getElementById("total").value = total.toFixed(2) + " грн";
+  }
+
+  const orders = new Map();
+
+  function submitForm() {
+    const name1 = document.getElementById("name1").value.trim();
+    const name2 = document.getElementById("name2").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const delivery = [...document.getElementsByName("delivery")].find(r => r.checked).value;
+    const selectedBook = books[document.getElementById("name").value];
+    const quantity = Number(document.getElementById("value").value);
+    const giftWrap = document.getElementById("giftWrap").checked;
+
+    if (!name1 || !name2 || !phone || quantity < 1 || isNaN(quantity)) return alert("Заповніть усі поля!");
+    if (!/^\+38 \(0\d{2}\) \d{3} \d{2} \d{2}$/.test(phone)) return alert("Формат телефону некоректний!");
+    if (delivery === "courier" && !address) return alert("Введіть адресу!");
+
+    const key = `${name1}|${name2}|${phone}|${delivery}|${address}|${giftWrap}`;
+    const item = { book: selectedBook.name, author: selectedBook.author, quantity, price: selectedBook.price, total: selectedBook.price * quantity };
+
+    if (orders.has(key)) {
+      orders.get(key).push(item);
+    } else {
+      orders.set(key, [item]);
+    }
+
+    renderReports();
+  }
+
+  function renderReports() {
+    const container = document.getElementById("reports");
+    container.innerHTML = '<h3 id="h3">Відомість замовлення</h3>';
+
+    for (const [key, items] of orders.entries()) {
+      const [name1, name2, phone, delivery, address, giftWrap] = key.split("|");
+      const deliveryText = delivery === "courier" ? "Кур'єр" : "Пошта";
+      const wrapText = giftWrap === "true" ? "Так" : "Ні";
+
+      let booksHTML = '';
+      let subtotal = 0;
+
+      for (const item of items) {
+        booksHTML += `<tr><td>${item.book} (${item.author})</td><td>${item.quantity}</td><td>${(item.total).toFixed(2)} грн</td></tr>`;
+        subtotal += item.total;
+      }
+
+      let total = subtotal;
+      total *= delivery === "courier" ? 1.15 : 1.05;
+      if (giftWrap === "true") total *= 1.10;
+
+      container.innerHTML += `
+        <div class="report">
+          <table>
+            <tr><td colspan="3">Замовник: ${name1} ${name2}, ${phone}</td></tr>
+            <tr><td colspan="3">Спосіб доставки: ${deliveryText}${delivery === "courier" ? `, Адреса: ${address}` : ''}</td></tr>
+            <tr><td colspan="3">Упаковка: ${wrapText}</td></tr>
+            <tr><th>Книга</th><th>Кількість</th><th>Вартість</th></tr>
+            ${booksHTML}
+            <tr><td colspan="2">Загальна сума до сплати</td><td>${total.toFixed(2)} грн</td></tr>
+          </table>
+        </div>
+      `;
+    }
+  }
+
+</script>
+</body>
+</html>

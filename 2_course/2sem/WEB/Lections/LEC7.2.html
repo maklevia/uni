@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Лекція 7</title>
+    <style>
+
+        .block1 {
+            background-color: lightskyblue;
+            height: 100px;
+            min-width: 250px;
+        }
+        .block2 {
+            background-color: gold;
+            height: 100px;
+            min-width: 250px;
+        }
+        .block3 {
+            background-color: deeppink;
+            height: 100px;
+            min-width: 250px;
+        }
+        .grow1 {
+            flex-grow: 1;
+        }
+        .grow2 {
+            flex-grow: 2;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 25px;
+            border-radius: 20px;
+            gap: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+ <div class="container">
+     <div class="block1 grow1"></div>
+     <div class="block1 grow2"></div>
+     <div class="block1 grow1"></div>
+     <div class="block2 grow2"></div>
+     <div class="block2 grow1"></div>
+     <div class="block2 grow2"></div>
+     <div class="block3 grow1"></div>
+     <div class="block3 grow2"></div>
+ </div>
+</body>
+</html>
