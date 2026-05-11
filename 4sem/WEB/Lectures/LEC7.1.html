@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Лекція 7</title>
+  <style>
+    .block1 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: orange;
+      font-weight: bold;
+      font-size: 25px;
+      width: 40px;
+      height: 100px;
+    }
+    .block2 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: blue;
+      font-weight: bold;
+      font-size: 20px;
+      width: 40px;
+      height: 90px;
+    }
+    .block3 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: green;
+      font-weight: bold;
+      font-size: 16px;
+      width: 40px;
+      height: 80px;
+    }
+    .block4 {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: yellow;
+      font-size: 14px;
+      width: 40px;
+      height: 50px;
+    }
+    .container1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid red;
+      width: 400px;
+      margin-bottom: 10px;
+      padding: 5px;
+      gap: 10px;
+    }
+    .container2 {
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 10px;
+      align-items: flex-end;
+      justify-content: flex-start;
+      border: 3px solid red;
+      width: 400px;
+      height: 400px;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+<div class="container1">
+ <div class="block1"> 1 </div>
+ <div class="block2"> 2 </div>
+ <div class="block3"> 3 </div>
+ <div class="block4"> 4 </div>
+</div>
+
+<div class="container2">
+  <div class="block1"> 1 </div>
+  <div class="block2"> 2 </div>
+  <div class="block3"> 3 </div>
+  <div class="block4"> 4 </div>
+</div>
+</body>
+</html>

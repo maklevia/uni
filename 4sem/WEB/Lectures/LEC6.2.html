@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Лекція 6</title>
+</head>
+<style>
+  header, footer{
+    position: fixed;
+    left: 0;
+    right: 0;
+    color: white;
+    background-color: #a40608;
+      height: 100px;
+  }
+  header{
+      top: 0;
+  }
+  footer{
+      bottom: 0;
+  }
+  .left, .right{
+      position: fixed;
+      background-color: #f5606e;
+      width: 200px;
+      top: 100px;
+      bottom: 100px;
+  }
+  .left{
+      left: 0;
+  }
+  .right{
+      right: 0;
+  }
+  .content{
+      position: fixed;
+      top: 100px;
+      bottom: 100px;
+      left: 200px;
+      right: 200px;
+      background-color: #f53b38;
+  }
+</style>
+<body>
+<header> header </header>
+<div class="left"> left </div>
+<div class="right"> right </div>
+<div class="content"> content </div>
+<footer> footer </footer>
+</body>
+</html>

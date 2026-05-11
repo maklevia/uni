@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Лекція 14</title>
+</head>
+<body>
+<form id="task">
+  <button type="button" onclick="add()">Додати</button>
+  <button type="button" onclick="remove()">Вилучити</button>
+  <div id="container">
+    <input type="text" id="input">
+  </div>
+
+</form>
+
+<script>
+  function add() {
+    for (let i = 0; i<2; i++) {
+    var b=document.createElement("input");
+    b.type='text';
+    b.id="i" + document.getElementById("container").childNodes.length;
+    document.getElementById("container").appendChild(b);
+  }}
+  function remove() {
+    while (container.children.length > 1) {
+      container.removeChild(container.lastChild);
+  }}
+</script>
+</body>
+</html>

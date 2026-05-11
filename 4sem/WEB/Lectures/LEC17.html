@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Лекція 17</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #DCD2CC;
+      font-family: sans-serif;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      border: 2px solid black;
+      border-top: none;
+      border-right: none;
+      width: 700px;
+      height: 500px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: flex-end;
+      position: relative;
+      padding-bottom: 0 ;
+    }
+    .bar-container {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      font-weight: bold;
+    }
+    .bar {
+      width: 100px;
+      background-color: #C45F90;
+      color: white;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      font-size: 14px;
+      padding: 10px 0;
+    }
+    .numbers {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: right;
+      width: 50px;
+      height: 500px;
+      margin-right: 5px;
+    }
+    .numbers p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+<h1 style=" margin-top: 20px;">Продажі по категоріях</h1>
+<div style="display: flex;">
+  <div class="numbers">
+    <p>3000</p>
+    <p>2500</p>
+    <p>2000</p>
+    <p>1500</p>
+    <p>1000</p>
+    <p>500</p>
+    <p>0</p>
+  </div>
+  <div class="container" id="container"></div>
+</div>
+<script>
+  const Data = [
+    {category: "Clothes", quantity: 2500},
+    {category: "Shoes", quantity: 1200},
+    {category: "Accessories", quantity: 1500},
+    {category: "Swimsuits", quantity: 450}
+  ];
+
+  const container = document.getElementById('container');
+  Data.forEach(data => {
+    const bar_container = document.createElement('div');
+    bar_container.className = 'bar-container';
+    const bar = document.createElement('div');
+    bar.classList.add('bar');
+    bar.style.height = `${(data.quantity / 3000) * 500}px`;
+    bar.textContent = data.quantity;
+
+    bar_container.textContent = data.category;
+    bar_container.appendChild(bar);
+    container.appendChild(bar_container);
+  });
+</script>
+</body>
+</html>

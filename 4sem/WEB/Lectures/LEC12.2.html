@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Лекція 12</title>
+</head>
+<body>
+<script>
+    function cost(amount) {
+        let grn = Math.floor(amount);
+        let kop = Math.round((amount - grn) * 100);
+        let w1;
+        let w2;
+        if (grn % 10 === 1 && grn % 100 !== 11) {
+            w1 = 'гривня';
+        } else if ((grn % 10 === 2 || grn % 10 === 3 || grn % 10 === 4) && !(grn % 100 === 12 || grn % 100 === 13 || grn % 100 === 14)) {
+            w1 = 'гривні';
+        } else {
+            w1 = 'гривень';
+        }
+
+        if (kop % 10 === 1 && kop % 100 !== 11) {
+            w2 = 'копійка';
+        } else if ((kop % 10 === 2 || kop % 10 === 3 || kop % 10 === 4) && !(kop % 100 === 12 || kop % 100 === 13 || kop % 100 === 14)) {
+            w2 = 'копійки';
+        } else {
+            w2 = 'копійок';
+        }
+
+        console.log('Вартість замовлення: ' + grn + ' ' + w1 + ' ' + kop + ' ' + w2);
+    }
+
+    const cost1 = function (amount) {
+        let grn = Math.floor(amount);
+        let kop = Math.round((amount - grn) * 100);
+        let w1;
+        let w2;
+        if (grn % 10 === 1 && grn % 100 !== 11) {
+            w1 = 'гривня';
+        } else if ((grn % 10 === 2 || grn % 10 === 3 || grn % 10 === 4) && !(grn % 100 === 12 || grn % 100 === 13 || grn % 100 === 14)) {
+            w1 = 'гривні';
+        } else {
+            w1 = 'гривень';
+        }
+
+        if (kop % 10 === 1 && kop % 100 !== 11) {
+            w2 = 'копійка';
+        } else if ((kop % 10 === 2 || kop % 10 === 3 || kop % 10 === 4) && !(kop % 100 === 12 || kop % 100 === 13 || kop % 100 === 14)) {
+            w2 = 'копійки';
+        } else {
+            w2 = 'копійок';
+        }
+
+        console.log('Вартість замовлення: ' + grn + ' ' + w1 + ' ' + kop + ' ' + w2);
+    }
+
+    const cost2 = (amount) => {
+        let grn = Math.floor(amount);
+        let kop = Math.round((amount - grn) * 100);
+        let w1;
+        let w2;
+        if (grn % 10 === 1 && grn % 100 !== 11) {
+            w1 = 'гривня';
+        } else if ((grn % 10 === 2 || grn % 10 === 3 || grn % 10 === 4) && !(grn % 100 === 12 || grn % 100 === 13 || grn % 100 === 14)) {
+            w1 = 'гривні';
+        } else {
+            w1 = 'гривень';
+        }
+
+        if (kop % 10 === 1 && kop % 100 !== 11) {
+            w2 = 'копійка';
+        } else if ((kop % 10 === 2 || kop % 10 === 3 || kop % 10 === 4) && !(kop % 100 === 12 || kop % 100 === 13 || kop % 100 === 14)) {
+            w2 = 'копійки';
+        } else {
+            w2 = 'копійок';
+        }
+
+        console.log('Вартість замовлення: ' + grn + ' ' + w1 + ' ' + kop + ' ' + w2);
+    }
+
+
+    cost(2.75);
+    cost1(1.04);
+    cost2(100.01);
+</script>
+</body>
+</html>

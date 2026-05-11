@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Лекція 16</title>
+  <style>
+    .container {
+      display: flex;
+      align-items: flex-end;
+      height: 400px;
+      margin: 10px;
+      padding: 10px;
+      border: 1px solid rgba(234, 185, 185);
+      border-radius: 10px;
+    }
+    label {
+      font-size: 20px;
+      margin: 10px;
+    }
+    input {
+      margin: 10px;
+    }
+    button {
+      font-size: 18px;
+      display: block;
+      margin: 10px;
+      background-color: rgba(234, 185, 185);
+      border: none;
+      border-radius: 10px;
+      padding: 5px;
+    }
+    .column {
+      flex: 1;
+      margin: 0 3px;
+    }
+  </style>
+</head>
+<body>
+<label for="column-amount">Set the number of columns in the histogram</label>
+<input type = "text" id = "column-amount" name = "column-amount">
+<button onclick = "generate()">Create</button>
+<div id="histogram" class="container"></div>
+<script>
+  function random_color() {
+    var r = Math.floor(Math.random() * 255);
+    var g = Math.floor(Math.random() * 255);
+    var b = Math.floor(Math.random() * 255);
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+  function random_height() {
+    var height = Math.floor(Math.random() * 300);
+    return height + 'px';
+  }
+  function generate() {
+    const container = document.getElementById("histogram");
+    container.innerHTML = "";
+    const columns = parseInt(document.getElementById("column-amount").value);
+    if (isNaN(columns) || columns < 1) {
+      return;
+    }
+    for (let i = 0; i < columns; i++) {
+      const column = document.createElement("div")
+      column.className = "column";
+      column.style.backgroundColor = random_color();
+      column.style.height =random_height();
+      container.appendChild(column);
+    }
+  }
+</script>
+</body>
